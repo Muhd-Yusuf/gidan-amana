@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Member {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  memberId      String      @unique
+  name          String
+  photoUrl      String?
+  dob           String
+  issueDate     String
+  expiryDate    String
+  ward          Ward        @relation(fields: [wardId], references: [id])
+  wardId        String      @db.ObjectId
+  pollingUnit   PollingUnit @relation(fields: [pollingUnitId], references: [id])
+  pollingUnitId String      @db.ObjectId
+  createdAt     DateTime    @default(now())
+}
+
+model Ward {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String        @unique
+  pollingUnits PollingUnit[]
+  members      Member[]
+  createdAt    DateTime      @default(now())
+}
+
+model PollingUnit {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  ward      Ward     @relation(fields: [wardId], references: [id])
+  wardId    String   @db.ObjectId
+  members   Member[]
+  createdAt DateTime @default(now())
+}
+
+model Admin {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model Counter {
+  id    String @id @map("_id")
+  value Int    @default(0)
+}
+
+model Setting {
+  id    String @id @map("_id")
+  value String
+}
