@@ -1,0 +1,18 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "local-backup/main",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "local-backup/main": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "local-backup/main",
+    "origin"
+  ]
+}

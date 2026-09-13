@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc --noEmit --pretty)",
+      "Bash(test -d /Users/apple/GidanAmana/node_modules/.prisma/client)",
+      "Bash(test -f /Users/apple/GidanAmana/prisma.config.ts)",
+      "Bash(grep -l \"catch\\\\|error\\\\|Error\" /Users/apple/GidanAmana/app/api/*/route.ts /Users/apple/GidanAmana/app/api/*/*/route.ts)",
+      "Bash(npm ls --depth=0)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npm run dev)"
+    ]
+  }
+}
